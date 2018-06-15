@@ -45,6 +45,11 @@ module.exports = (context, callback) => {
                 utcOffset = 8;
             }
 
+            let wait_time = parsed_attraction.ShortWaitTimeDisplay;
+            if (wait_time === "Temporary Closure") {
+                wait_time = "Temp. Closure";
+            }
+
             let weatherUrl = "https://api.openweathermap.org/data/2.5/weather" +
                 "?lat=" + parsed_attraction.Latitude + 
                 "&lon=" + parsed_attraction.Longitude + 
@@ -75,11 +80,15 @@ module.exports = (context, callback) => {
                         temperature_c: temp_c,
                         time,
                         date,
+                        hour: serverDate.getHours(),
+                        minute: serverDate.getMinutes(),
+                        day: serverDate.getDay(),
+                        month: serverDate.getMonth() + 1,
                         name: parsed_attraction.Name,
                         id: parsed_attraction.Id,
                         latitude: parsed_attraction.Latitude,
                         longitude: parsed_attraction.Longitude,
-                        wait_time: parsed_attraction.ShortWaitTimeDisplay
+                        wait_time
                     };
 
                     callback(undefined, res);
