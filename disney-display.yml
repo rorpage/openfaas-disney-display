@@ -1,0 +1,13 @@
+provider:
+  name: faas
+  gateway: http://localhost:8080
+
+functions:
+  disney-display:
+    lang: node
+    handler: ./disney-display
+    image: rorpage/disney-display:1.0.0
+    environment:
+      API_KEY_NAME: rorpage
+    secrets:
+      - owm
