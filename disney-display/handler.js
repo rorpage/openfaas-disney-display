@@ -72,18 +72,27 @@ module.exports = (context, callback) => {
                     let utc = clientDate.getTime() + (clientDate.getTimezoneOffset() * 60000);
                     let serverDate = new Date(utc + (3600000 * utcOffset));
 
-                    let time = serverDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-                    let date = serverDate.toLocaleDateString([], { month: "2-digit", day: "2-digit" })
+                    let hour = (serverDate.getHours() + 11) % 12 + 1;
+                    let hour_display = (hour < 10) ? `0${hour}` : hour;
+                    let minutes = serverDate.getMinutes();
+                    let minutes_display = (minutes < 10) ? `0${minutes}` : minutes;
+                    let time = `${hour_display}:${minutes_display}`;
+
+                    let month = serverDate.getMonth() + 1;
+                    let month_display = (month < 10) ? `0${month}` : month;
+                    let day = serverDate.getDate();
+                    let day_display = (day < 10) ? `0${day}` : day;
+                    let date = `${month_display}/${day_display}`;
 
                     let res = {
                         temperature_f: temp_f,
                         temperature_c: temp_c,
                         time,
                         date,
-                        hour: (serverDate.getHours() + 11) % 12 + 1,
-                        minute: serverDate.getMinutes(),
-                        day: serverDate.getDate(),
-                        month: serverDate.getMonth() + 1,
+                        hour,
+                        minute,
+                        day,
+                        month,
                         name: parsed_attraction.Name,
                         id: parsed_attraction.Id,
                         latitude: parsed_attraction.Latitude,
