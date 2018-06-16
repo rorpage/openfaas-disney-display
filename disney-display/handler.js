@@ -90,7 +90,7 @@ module.exports = (context, callback) => {
                         time,
                         date,
                         hour,
-                        minute,
+                        minutes,
                         day,
                         month,
                         name: parsed_attraction.Name,
