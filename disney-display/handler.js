@@ -50,6 +50,10 @@ module.exports = (context, callback) => {
                 wait_time = "Temp. Closure";
             }
 
+            if (wait_time.indexOf("Posted") != -1) {
+                wait_time = wait_time.replace("Posted Wait", "Wait");
+            }
+
             let weatherUrl = "https://api.openweathermap.org/data/2.5/weather" +
                 "?lat=" + parsed_attraction.Latitude + 
                 "&lon=" + parsed_attraction.Longitude + 
