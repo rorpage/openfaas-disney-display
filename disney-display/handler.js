@@ -45,13 +45,9 @@ module.exports = (context, callback) => {
                 utcOffset = 8;
             }
 
-            let wait_time = parsed_attraction.CurrentStatus;
+            let wait_time = parsed_attraction.ShortWaitTimeDisplay;
             if (wait_time === "Temporary Closure") {
                 wait_time = "Temp. Closure";
-            }
-
-            if (wait_time.indexOf("Posted") != -1) {
-                wait_time = wait_time.replace("Posted Wait", "Wait");
             }
 
             let weatherUrl = "https://api.openweathermap.org/data/2.5/weather" +
