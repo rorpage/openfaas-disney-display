@@ -45,7 +45,7 @@ module.exports = (context, callback) => {
                 utcOffset = 8;
             }
 
-            let wait_time = parsed_attraction.ShortWaitTimeDisplay;
+            let wait_time = parsed_attraction.CurrentStatus;
             if (wait_time === "Temporary Closure") {
                 wait_time = "Temp. Closure";
             }
